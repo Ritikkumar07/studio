@@ -27,12 +27,12 @@ const PersonalizedCourseRecommendationsOutputSchema = z.object({
   recommendedCourses: z
     .string()
     .describe(
-      'A list of courses recommended to the user, tailored to their interests.'
+      'A list of courses recommended to the user, tailored to their interests. If no courses are a good fit, return an empty string.'
     ),
   reasoning: z
     .string()
     .describe(
-      'An explanation of why these courses were recommended to the user.'
+      'An explanation of why these courses were recommended to the user. If no courses were recommended, explain why.'
     ),
 });
 export type PersonalizedCourseRecommendationsOutput =
@@ -50,7 +50,9 @@ const prompt = ai.definePrompt({
   output: {schema: PersonalizedCourseRecommendationsOutputSchema},
   prompt: `You are an AI course recommendation agent. You will be provided with the user's browsing history and a list of available courses.
 
-  Based on this information, you must generate a list of courses that the user would be interested in, and provide a reasoning for why you recommended these courses.
+  Based on this information, you must generate a list of course titles that the user would be interested in, and provide a reasoning for why you recommended these courses. The titles must exactly match the titles from the "Available Courses" list.
+
+  If none of the available courses are a good match for the user's interests, you should return an empty list for 'recommendedCourses' and explain in the 'reasoning' field why no courses were recommended.
 
   User Browsing History: {{{userBrowsingHistory}}}
   Available Courses: {{{availableCourses}}}
