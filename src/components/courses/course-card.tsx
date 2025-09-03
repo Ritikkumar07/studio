@@ -42,57 +42,52 @@ export default function CourseCard({ course }: CourseCardProps) {
           </DialogTrigger>
         </CardFooter>
       </Card>
-      <DialogContent className="sm:max-w-4xl max-h-[90vh] flex flex-col">
-        <div className="relative aspect-video flex-shrink-0">
-          <Image src={course.image} alt={course.title} fill className="object-cover rounded-t-lg" data-ai-hint="online course" />
-        </div>
-        <div className="grid md:grid-cols-3 gap-8 overflow-y-auto px-6 py-4">
-            <div className='md:col-span-2'>
-                <DialogHeader className="p-0 mb-6">
-                    <DialogTitle className="text-3xl font-bold font-headline mb-2">{course.title}</DialogTitle>
-                    <DialogDescription className="text-base text-muted-foreground">
-                        {course.longDescription}
-                    </DialogDescription>
-                </DialogHeader>
-                <h2 className="text-2xl font-bold mb-4 font-headline">Course Curriculum</h2>
-                <Accordion type="single" collapsible className="w-full">
-                    {course.modules.map((module, index) => (
-                    <AccordionItem value={`item-${index}`} key={index}>
-                        <AccordionTrigger>
-                        <div className="flex items-center gap-4">
-                            <BookCopy className="h-5 w-5 text-primary" />
-                            <span className='text-left'>{module.title}</span>
+      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <Badge variant="secondary" className="capitalize w-fit">{course.category}</Badge>
+          <DialogTitle className="text-3xl font-bold">{course.title}</DialogTitle>
+          <DialogDescription>
+            {course.longDescription}
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+            <Card>
+                <CardContent className="p-4">
+                    <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 rounded-full bg-muted flex-shrink-0 relative overflow-hidden">
+                           <Image src={`https://i.pravatar.cc/150?u=${course.instructor}`} alt={course.instructor} fill className="object-cover" />
                         </div>
-                        </AccordionTrigger>
-                        <AccordionContent>
-                        <p className="pl-9 text-muted-foreground">{module.description}</p>
-                        </AccordionContent>
-                    </AccordionItem>
-                    ))}
-                </Accordion>
-            </div>
-            <div className="space-y-6">
-                <Badge variant="secondary" className="capitalize w-fit text-base">{course.category}</Badge>
-                <Card>
-                    <CardContent className="p-6">
-                        <div className="flex items-center space-x-4">
-                            <div className="w-16 h-16 rounded-full bg-muted flex-shrink-0 relative overflow-hidden">
-                                <Image src={`https://i.pravatar.cc/150?u=${course.instructor}`} alt={course.instructor} fill className="object-cover" />
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-lg">{course.instructor}</h3>
-                                <p className="text-sm text-muted-foreground">Instructor</p>
-                            </div>
+                        <div>
+                          <h3 className="font-bold">{course.instructor}</h3>
+                          <p className="text-sm text-muted-foreground">Instructor</p>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-4">{course.instructorBio}</p>
-                    </CardContent>
-                </Card>
+                    </div>
+                     <p className="text-sm text-muted-foreground mt-2">{course.instructorBio}</p>
+                </CardContent>
+            </Card>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Course Curriculum</h3>
+              <Accordion type="single" collapsible className="w-full">
+                {course.modules.map((module, index) => (
+                  <AccordionItem value={`item-${index}`} key={index}>
+                    <AccordionTrigger>
+                      <div className="flex items-center gap-2">
+                        <BookCopy className="h-4 w-4 text-primary" />
+                        <span className="text-left">{module.title}</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="pl-8 text-muted-foreground">{module.description}</p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
         </div>
-        <DialogFooter className='px-6 pb-6 pt-0 mt-auto'>
-            <Button asChild className="w-full md:w-auto">
-                <Link href={`/courses/${course.id}`}>Go to Course Page <ArrowRight /></Link>
-            </Button>
+        <DialogFooter>
+          <Button asChild>
+            <Link href={`/courses/${course.id}`}>Go to Course Page <ArrowRight /></Link>
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
