@@ -65,8 +65,8 @@ export default function HeroSlider({ courses }: HeroSliderProps) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:inline-flex" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:inline-flex" />
+        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:inline-flex bg-white/20 hover:bg-white/40 border-0 text-white" />
+        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:inline-flex bg-white/20 hover:bg-white/40 border-0 text-white" />
       </Carousel>
     </section>
   );
