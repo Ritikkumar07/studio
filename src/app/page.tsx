@@ -1,27 +1,13 @@
 import { categories, courses } from '@/lib/data';
 import CourseList from '@/components/courses/course-list';
 import PersonalizedRecommendations from '@/components/courses/personalized-recommendations';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import HeroSlider from '@/components/layout/hero-slider';
 
 export default function Home() {
+  const featuredCourses = courses.slice(0, 4);
   return (
     <>
-      <section className="bg-card w-full">
-        <div className="container mx-auto px-4 py-16 md:py-24 text-center">
-          <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tight text-primary">
-            Course Explorer
-          </h1>
-          <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-foreground/80">
-            Unlock your potential with our curated selection of online courses. Learn from the best, at your own pace.
-          </p>
-          <div className="mt-8">
-            <Button asChild size="lg">
-              <Link href="#courses">Explore Courses</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <HeroSlider courses={featuredCourses} />
 
       <div className="container mx-auto px-4 py-8">
         <PersonalizedRecommendations />
