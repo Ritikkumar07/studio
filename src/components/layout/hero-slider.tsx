@@ -31,6 +31,9 @@ export default function HeroSlider({ courses }: HeroSliderProps) {
         className="w-full"
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
+        opts={{
+          loop: true,
+        }}
       >
         <CarouselContent>
           {courses.map((course) => (
