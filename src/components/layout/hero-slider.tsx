@@ -21,7 +21,7 @@ interface HeroSliderProps {
 
 export default function HeroSlider({ courses }: HeroSliderProps) {
   const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: true })
+    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
   return (
@@ -29,8 +29,6 @@ export default function HeroSlider({ courses }: HeroSliderProps) {
       <Carousel
         plugins={[plugin.current]}
         className="w-full"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
         opts={{
           loop: true,
         }}
