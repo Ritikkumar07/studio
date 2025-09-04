@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -56,7 +57,7 @@ export default function HeroSlider({ courses }: HeroSliderProps) {
                     </p>
                     <div className="mt-8">
                       <Button asChild size="lg">
-                        <Link href={`/courses/${course.id}`}>Learn More</Link>
+                        <Link href="#courses">Learn More</Link>
                       </Button>
                     </div>
                   </div>
